@@ -11,6 +11,14 @@ gem 'less-rails'
 
 gem 'twitter-bootstrap-rails'
 
+gem 'omniauth-facebook'
+
+gem 'omniauth-twitter'
+
+gem 'omniauth-vkontakte'
+
+gem 'omniauth-soundcloud'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

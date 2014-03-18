@@ -17,3 +17,4 @@
 database.yml
 /.idea
 /bin
+/config/environments/development.rb
