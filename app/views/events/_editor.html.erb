@@ -1,0 +1,10 @@
+<%= form_for(Comment.new) do |c| %>
+    <div class="field">
+      <%= c.label 'Add comment' %><br>
+      <%= c.bootsy_area :body, class: 'form-control', rows: 12, editor_options: {alert_unsaved: false} %>
+    </div>
+    <input type="hidden" name="event_id" value="<%=	@event.id %>">
+    <div class="actions">
+      <%= c.submit :class => 'btn btn-info' %>
+    </div>
+<% end %>

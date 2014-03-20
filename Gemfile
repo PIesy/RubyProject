@@ -9,7 +9,7 @@ gem 'devise'
 
 gem 'less-rails'
 
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 
 gem 'omniauth-facebook'
 
@@ -18,6 +18,12 @@ gem 'omniauth-twitter'
 gem 'omniauth-vkontakte'
 
 gem 'omniauth-soundcloud'
+
+gem 'redcarpet'
+
+gem 'bootsy'
+
+gem 'twitter-typeahead-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

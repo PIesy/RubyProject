@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootsy
 //= require twitter/bootstrap
 //= require turbolinks
+//= require twitter/typeahead
+//= require twitter/typeahead.min
 //= require_tree .

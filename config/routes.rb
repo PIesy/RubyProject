@@ -1,4 +1,5 @@
 Project::Application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get "home/index"
   resources :comments
 

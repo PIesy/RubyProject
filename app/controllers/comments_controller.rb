@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -30,6 +31,8 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @comment }
+        Event.find(params[:event_id]).comments << @comment
+        current_user.comments << @comment
       else
         format.html { render action: 'new' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
