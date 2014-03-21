@@ -3,6 +3,7 @@ Project::Application.routes.draw do
   get "home/index"
   resources :comments
 
+  resources :tracks
   resources :events
   get '/events/:id/join' => 'events#join'
   get '/events/:id/leave' => 'events#leave'

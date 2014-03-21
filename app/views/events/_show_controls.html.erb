@@ -1,0 +1,15 @@
+<%= render 'event_controls', event: @event %>
+<hr>
+<%= content_tag :a, 'Add track', :href => '#add-track', :class => 'btn btn-default', :data => {:toggle => 'modal'} %>
+<%= render 'playlist' %>
+<div id="player"></div>
+
+<%= render 'shared/add_track' %>
+
+<script>
+  $('.playlist').click(function(){
+      $('#player').children().remove();
+      var url = $(this).data('url');
+      var player = Popcorn.soundcloud( "#player", url );
+  })
+</script>

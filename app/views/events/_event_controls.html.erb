@@ -1,15 +1,14 @@
-<%= link_to 'Show', event, class: "btn btn-default" %>
 <% if event.user_is_owner? current_user  %>
-  <div class="btn-group">
-    <%= link_to 'Edit', edit_event_path(event), class: "btn btn-default" %>
-    <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+  <div class="btn-group" style="width: 80%;">
+    <%= link_to 'Edit', edit_event_path(event), class: "btn btn-info", style: "width: 50%" %>
+    <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", style: "width: 50%" %>
   </div>
 <% elsif current_user.present? %>
-  <div class="btn-group">
+  <div class="btn-group" style="width: 80%">
     <% if event.user_participates? current_user %>
-        <%= link_to 'Leave', leave_event_path(event), class: "btn btn-default" %>
+        <%= link_to 'Leave', leave_event_path(event), class: "btn btn-default", style: "width: 100%" %>
     <% else %>
-        <%= link_to 'Join', join_event_path(event) ,class: "btn btn-default" %>
+        <%= link_to 'Join', join_event_path(event) ,class: "btn btn-default", style: "width: 100%" %>
     <% end %>
   </div>
 <% end %>

@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_many :event_attendants
   has_many :users, :through => :event_attendants
   has_and_belongs_to_many :tags
+  has_many :tracks
 
   def user_participates?(user)
     if user.present?

@@ -1,3 +1,8 @@
+<% content_for :page_controls do %>
+    <%= render 'show_controls' %>
+<% end %>
+
+
 <p id="notice"><%= notice %></p>
 
 <div class="panel panel-default">
@@ -5,13 +10,11 @@
     <%= @event.name %>
   </div>
   <div class="panel-body">
-    <p><%= @event.date.to_date %></p>
+    <p id="kill-switch"><%= @event.date.to_date %></p>
     <p><%= @event.user.name %></p>
     <p><%= @event.users.count %></p>
   </div>
 </div>
-
-<div id="video"></div>
 
 <h4>Comments</h4>
 
@@ -38,7 +41,3 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
-
-<script>
-    var player = Popcorn.soundcloud( "#video", "http://soundcloud.com/lilleput/popcorn" );
-</script>
