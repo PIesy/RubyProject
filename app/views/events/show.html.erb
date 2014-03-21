@@ -6,9 +6,12 @@
   </div>
   <div class="panel-body">
     <p><%= @event.date.to_date %></p>
-    <p><%= @event.owner %></p>
+    <p><%= @event.user.name %></p>
+    <p><%= @event.users.count %></p>
   </div>
 </div>
+
+<div id="video"></div>
 
 <h4>Comments</h4>
 
@@ -31,7 +34,11 @@
     </div>
 <% end %>
 
-<%= render 'editor' if current_user.present? %>
+<%= render 'editor' if @event.user_participates? current_user %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
+<script>
+    var player = Popcorn.soundcloud( "#video", "http://soundcloud.com/lilleput/popcorn" );
+</script>

@@ -4,6 +4,8 @@ Project::Application.routes.draw do
   resources :comments
 
   resources :events
+  get '/events/:id/join' => 'events#join'
+  get '/events/:id/leave' => 'events#leave'
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'omniauth_callbacks' }
   # The priority is based upon order of creation: first created -> highest priority.

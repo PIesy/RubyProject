@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show] 
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :join, :leave]
 
   # GET /events
   # GET /events.json
@@ -29,6 +29,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
+        current_user.events << @event
+        @event.users << current_user
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
@@ -62,6 +64,16 @@ class EventsController < ApplicationController
     end
   end
 
+  def join
+    @event.users << current_user
+    redirect_to :action => 'show', :id => @event.id, :status => :moved_permanently
+  end
+
+  def leave
+    @event.users.delete(current_user)
+    redirect_to :action => 'index'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -70,6 +82,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :date, :owner)
+      params.require(:event).permit(:name, :date)
     end
 end

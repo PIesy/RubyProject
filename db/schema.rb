@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320204800) do
+ActiveRecord::Schema.define(version: 20140320224813) do
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"
@@ -29,24 +29,29 @@ ActiveRecord::Schema.define(version: 20140320204800) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
-    t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "event_id"
   end
 
+  create_table "event_attendants", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.datetime "date"
-    t.string   "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
     t.time     "duration"
   end
 
-  create_table "events_tags", force: true do |t|
+  create_table "events_tags", id: false, force: true do |t|
     t.integer "event_id"
     t.integer "tag_id"
   end
