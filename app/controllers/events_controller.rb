@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
+  include EventsHelper
   before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy, :join, :leave]
+  before_action :get_tags, only: [:create, :update]
 
   # GET /events
   # GET /events.json
@@ -11,6 +13,10 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @hash = Gmaps4rails.build_markers(@event) do |event, marker|
+      marker.lat event.latitude
+      marker.lng event.longitude
+    end
   end
 
   # GET /events/new
@@ -31,6 +37,7 @@ class EventsController < ApplicationController
       if @event.save
         current_user.events << @event
         @event.users << current_user
+        @event.tags << @tags
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
@@ -45,6 +52,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
+        @event.tags << @tags
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -82,6 +90,11 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :date)
+      params.require(:event).permit(:name, :date, :description, :end_date, :location, :tags)
+    end
+
+    def get_tags
+      tags_array = split_tags_string params[:tags]
+      @tags = create_tag_objects tags_array
     end
 end

@@ -13,12 +13,25 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location, class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.datetime_select :date, class: 'form-control' %>
   </div>
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.datetime_select :end_date, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.bootsy_area :description, class: 'form-control', rows: 12, editor_options: {alert_unsaved: false} %>
+  </div>
+  <input name="tags" type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
   <div class="actions">
     <%= f.submit %>
   </div>

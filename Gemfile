@@ -25,6 +25,14 @@ gem 'bootsy'
 
 gem 'twitter-typeahead-rails'
 
+gem 'gmaps4rails'
+
+gem 'underscore-rails'
+
+gem 'geocoder'
+
+gem 'geokit-rails'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

@@ -7,4 +7,16 @@ module EventsHelper
     "events/#{event.id}/leave"
   end
 
+  def split_tags_string(tag_string)
+    tag_string.downcase
+    tags = tag_string.scan (/[a-z\d]+/)
+  end
+
+  def create_tag_objects(tag_array)
+    tags = []
+    tag_array.each do |t|
+      tags << Tag.find_or_create_by(body: t)
+    end
+    return tags
+  end
 end
