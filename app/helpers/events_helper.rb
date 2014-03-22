@@ -7,8 +7,12 @@ module EventsHelper
     "events/#{event.id}/leave"
   end
 
+  def search_by_tag_path(tag)
+    "search/#{tag.id}"
+  end
+
   def split_tags_string(tag_string)
-    tag_string.downcase
+    tag_string = tag_string.downcase
     tags = tag_string.scan (/[a-z\d]+/)
   end
 

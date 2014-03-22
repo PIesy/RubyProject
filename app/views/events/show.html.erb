@@ -31,9 +31,10 @@
   </table>
 </div>
 
+<h6>Tags</h6>
 <div class="well">
     <% @event.tags.each do |tag| %>
-        <span><%= tag.body %> </span>
+        <%= link_to tag.body, search_by_tag_path(tag) %>
     <% end %>
 </div>
 

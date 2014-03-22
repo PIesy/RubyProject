@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  include EventServices
   has_and_belongs_to_many :tags
   has_many :comments
   belongs_to :user
@@ -8,16 +9,4 @@ class Event < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode
   acts_as_mappable :default_units => :kms, :lat_column_name => :latitude, :lng_column_name => :longitude
-
-  def user_participates?(user)
-    if user.present?
-      self.users.where(:id => user.id).present?
-    end
-  end
-
-  def user_is_owner?(user)
-    if user.present?
-      self.user.id == user.id
-    end
-  end
 end

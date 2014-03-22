@@ -1,5 +1,9 @@
 <h1>Listing events</h1>
 
+<% content_for :page_controls do %>
+    <%= render 'events/index_controls' %>
+<% end %>
+
 <%=	 render 'events/events_block' %>
 
 <%= link_to 'New Event', new_event_path %>

@@ -2,11 +2,12 @@ Project::Application.routes.draw do
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get "home/index"
   resources :comments
-
   resources :tracks
   resources :events
   get '/events/:id/join' => 'events#join'
   get '/events/:id/leave' => 'events#leave'
+  get '/events/search/:id' => 'search#select_by_tag'
+  get '/search' => 'search#search'
 
   devise_for :users, :controllers => { :omniauth_callbacks => 'omniauth_callbacks' }
   # The priority is based upon order of creation: first created -> highest priority.

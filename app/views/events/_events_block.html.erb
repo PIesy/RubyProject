@@ -7,8 +7,8 @@
             </div>
         </div>
         <div class="panel-footer">
-          <%= link_to 'Show', event, class: "btn btn-default" %>
-          <%= render 'event_controls', event: event %>
+          <%= link_to 'Show', event_path(event.id), class: "btn btn-default" %>
+          <%= render 'events/event_controls', event: event %>
         </div>
     </div>
   <% end %>
