@@ -19,4 +19,5 @@
 //= require twitter/typeahead.min
 //= require underscore
 //= require gmaps/google
+//= require bootstrap-tagsinput
 //= require_tree .

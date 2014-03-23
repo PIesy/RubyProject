@@ -1,0 +1,37 @@
+<h1>Listing alkohols</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image uid</th>
+      <th>Image name</th>
+      <th>Percentage</th>
+      <th>Volume</th>
+      <th>Bottle type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @alkohols.each do |alkohol| %>
+      <tr>
+        <td><%= alkohol.name %></td>
+        <td><%= alkohol.image_uid %></td>
+        <td><%= alkohol.image_name %></td>
+        <td><%= alkohol.percentage %></td>
+        <td><%= alkohol.volume %></td>
+        <td><%= alkohol.bottle_type %></td>
+        <td><%= link_to 'Show', alkohol %></td>
+        <td><%= link_to 'Edit', edit_alkohol_path(alkohol) %></td>
+        <td><%= link_to 'Destroy', alkohol, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Alkohol', new_alkohol_path %>

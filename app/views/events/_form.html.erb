@@ -24,15 +24,20 @@
     <%= f.datetime_select :date, class: 'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :end_date %>
+    <%= f.label :end_date %><br>
     <%= f.datetime_select :end_date, class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :description %>
     <%= f.bootsy_area :description, class: 'form-control', rows: 12, editor_options: {alert_unsaved: false} %>
   </div>
-  <input name="tags" type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput">
+  <div class="field">
+    <%= f.label 'Tags' %><br>
+    <input id="tags-input" name="tags" type="text" value="<%= tags_to_s(@event.tags) %>" data-role="tagsinput">
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= javascript_include_tag 'search' %>

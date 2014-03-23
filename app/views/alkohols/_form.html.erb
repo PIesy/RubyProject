@@ -1,0 +1,44 @@
+<%= form_for(@alkohol) do |f| %>
+  <% if @alkohol.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@alkohol.errors.count, "error") %> prohibited this alkohol from being saved:</h2>
+
+      <ul>
+      <% @alkohol.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage %><br>
+    <%= f.text_field :percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :volume %><br>
+    <%= f.text_field :volume %>
+  </div>
+  <div class="field">
+    <%= f.label :count %><br>
+    <%= f.number_field :count, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :bottle_type %><br>
+    <select name="alkohol[bottle_type]" class="form-control">
+      <option value="1">Beer bottle</option>
+      <option value="2">Whiskey bottle</option>
+      <option value="3">Vine bottle</option>
+      <option value="4">Cognac bottle</option>
+      <option value="5">Vodka bottle</option>
+      <option value="6">Byrlo bottle</option>
+    </select>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

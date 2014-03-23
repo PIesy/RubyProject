@@ -23,4 +23,12 @@ module EventsHelper
     end
     return tags
   end
+
+  def tags_to_s(tags)
+    s = ''
+    tags.each do |t|
+      s += t.body + ','
+    end
+    return s
+  end
 end

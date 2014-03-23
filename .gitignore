@@ -18,3 +18,4 @@ database.yml
 /.idea
 /bin
 /config/environments/development.rb
+/public/system

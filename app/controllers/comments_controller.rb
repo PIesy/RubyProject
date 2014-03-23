@@ -29,12 +29,12 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @comment }
         Event.find(params[:event_id]).comments << @comment
         current_user.comments << @comment
       else
-        format.html { render action: 'new' }
+        format.html { redirect_to :back }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

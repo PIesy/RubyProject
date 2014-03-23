@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322150832) do
+ActiveRecord::Schema.define(version: 20140323152729) do
+
+  create_table "alkohols", force: true do |t|
+    t.string   "name"
+    t.string   "image_uid"
+    t.string   "image_name"
+    t.float    "percentage"
+    t.float    "volume"
+    t.integer  "count"
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "bottle_type"
+  end
 
   create_table "bootsy_image_galleries", force: true do |t|
     t.integer  "bootsy_resource_id"

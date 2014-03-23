@@ -3,8 +3,7 @@ class TracksController < ApplicationController
 
   def create
     @track = Track.new(track_params)
-    @track.save
-    Event.find(params[:event_id]).tracks << @track
+    Event.find(params[:event_id]).tracks << @track if @track.save
     redirect_to :back
   end
 

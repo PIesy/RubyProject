@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @alkohol.name %>
+</p>
+
+<p>
+  <strong>Percentage:</strong>
+  <%= @alkohol.percentage %>
+</p>
+
+<p>
+  <strong>Volume:</strong>
+  <%= @alkohol.volume %>
+</p>
+
+<p>
+  <strong>Bottle type:</strong>
+  <%= @alkohol.bottle_type %>
+</p>
+
+<%= image_tag @alkohol.image.thumb('400x200').url if @alkohol.image_stored? %>
+
+<%= link_to 'Edit', edit_alkohol_path(@alkohol) %> |
+<%= link_to 'Back', alkohols_path %>
