@@ -1,6 +1,6 @@
 <%= render 'event_controls', event: @event %>
 <hr>
-<%= link_to 'buhlo', new_alkohol_path, class: 'btn btn-danger' %>
+<%= link_to 'buhlo', (new_alkohol_path + '/?id=' + @event.id.to_s), class: 'btn btn-danger' %>
 <%= content_tag :a, 'Add track', :href => '#add-track', :class => 'btn btn-default', :data => {:toggle => 'modal'} %>
 <%= render 'playlist' %>
 <div id="player"></div>

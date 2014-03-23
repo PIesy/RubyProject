@@ -1,44 +1,59 @@
-<%= form_for(@alkohol) do |f| %>
-  <% if @alkohol.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@alkohol.errors.count, "error") %> prohibited this alkohol from being saved:</h2>
+<div class="container">
+    <div class="col-md-4">
+        <%= form_for(@alkohol) do |f| %>
+          <% if @alkohol.errors.any? %>
+            <div id="error_explanation" style="width: 300px;">
+              <h2><%= pluralize(@alkohol.errors.count, "error") %> prohibited this alkohol from being saved:</h2>
 
-      <ul>
-      <% @alkohol.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+              <ul>
+              <% @alkohol.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :name %><br>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= f.label :drink_type %><br>
+            <%= f.select(:drink_type, alcohol_type_choices, {:selected => @alkohol.drink_type}, { :class => 'form-control' }) %>
+          </div>
+          <div class="field">
+            <%= f.label :percentage %><br>
+            <%= f.text_field :percentage, class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= f.label :volume %><br>
+            <%= f.text_field :volume, class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= f.label :count %><br>
+            <%= f.number_field :count, class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= f.label :bottle_type %><br>
+            <%= f.select(:bottle_type, alcohol_bottle_choices, {:selected => @alkohol.bottle_type}, { :class => 'form-control' }) %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+          <input type="hidden" name="event_id" value="<%= @event.id%>">
+        <% end %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :percentage %><br>
-    <%= f.text_field :percentage %>
-  </div>
-  <div class="field">
-    <%= f.label :volume %><br>
-    <%= f.text_field :volume %>
-  </div>
-  <div class="field">
-    <%= f.label :count %><br>
-    <%= f.number_field :count, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :bottle_type %><br>
-    <select name="alkohol[bottle_type]" class="form-control">
-      <option value="1">Beer bottle</option>
-      <option value="2">Whiskey bottle</option>
-      <option value="3">Vine bottle</option>
-      <option value="4">Cognac bottle</option>
-      <option value="5">Vodka bottle</option>
-      <option value="6">Byrlo bottle</option>
-    </select>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="col-md-3" id="image-box">
+      <div class="thumbnail">
+        <%= image_tag get_bottle_image(@alkohol), style: 'max-width: 400px; max-height: 200px' %>
+      </div>
+    </div>
+</div>
+
+<script>
+  $('#alkohol_bottle_type').change(function(){
+      var val = this.value;
+      $('img').attr('src','/assets/' + val + '.jpg');
+  })
+</script>

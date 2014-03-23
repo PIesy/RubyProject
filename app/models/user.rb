@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable, :omniauth_providers => [:facebook, :twitter, :vkontakte]
   has_many :events
   has_many :comments
+  has_many :alkohols
 
   def self.find_for_facebook_oauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|

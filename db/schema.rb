@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323152729) do
+ActiveRecord::Schema.define(version: 20140323230841) do
 
   create_table "alkohols", force: true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140323152729) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bottle_type"
+    t.string   "drink_type"
   end
 
   create_table "bootsy_image_galleries", force: true do |t|
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140323152729) do
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "end_date"
+    t.float    "coolness"
   end
 
   create_table "events_tags", id: false, force: true do |t|

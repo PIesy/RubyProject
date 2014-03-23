@@ -1,0 +1,30 @@
+<div class="well col-md-12" style="height: 230px">
+  <div id="alcohol-bar" class="row" style="height: 210px;">
+  <% @event.alkohols.each do |alkohol| %>
+    <div class="col-md-2">
+        <div class="panel card" id="<%= alkohol.id %>" style="width: 100px">
+          <div class="panel-body">
+            <p style="text-align: center"><%= alkohol.name %></p>
+            <%= image_tag alkohol.image.thumb('90x135#').url%>
+          </div>
+          <div class="panel-footer">
+            <p style="text-align: center">By <%= alkohol.user.name %></p>
+          </div>
+        </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<script>
+    $("#alcohol-bar").niceScroll();
+</script>
+
+<script>
+    $('.card').click(function(){
+        var id = this.id;
+        $.ajax({
+            url: '/alkohols/' + id
+        });
+    });
+</script>

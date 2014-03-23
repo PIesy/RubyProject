@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         current_user.events << @event
-        @event.users << current_user
+        @event.add_user current_user
         @event.tags << @tags
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
@@ -74,12 +74,12 @@ class EventsController < ApplicationController
   end
 
   def join
-    @event.users << current_user
+    @event.add_user current_user
     redirect_to :action => 'show', :id => @event.id, :status => :moved_permanently
   end
 
   def leave
-    @event.users.delete(current_user)
+    @event.remove_user current_user
     redirect_to :action => 'index'
   end
 

@@ -1,5 +1,7 @@
 class AlkoholsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_alkohol, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:new, :create]
 
   # GET /alkohols
   # GET /alkohols.json
@@ -10,6 +12,9 @@ class AlkoholsController < ApplicationController
   # GET /alkohols/1
   # GET /alkohols/1.json
   def show
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /alkohols/new
@@ -29,7 +34,9 @@ class AlkoholsController < ApplicationController
 
     respond_to do |format|
       if @alkohol.save
-        format.html { redirect_to @alkohol, notice: 'Alkohol was successfully created.' }
+        current_user.alkohols << @alkohol
+        @event.add_alcohol @alkohol
+        format.html { redirect_to @event, notice: 'Alkohol was successfully created.' }
         format.json { render action: 'show', status: :created, location: @alkohol }
       else
         format.html { render action: 'new' }
@@ -41,10 +48,10 @@ class AlkoholsController < ApplicationController
   # PATCH/PUT /alkohols/1
   # PATCH/PUT /alkohols/1.json
   def update
-    @alkohol.image = Pathname.new("app/assets/images/#{@alkohol.bottle_type}.jpg")
+    @alkohol.image = Pathname.new("app/assets/images/#{params[:alkohol => :bottle_type]}.jpg")
     respond_to do |format|
       if @alkohol.update(alkohol_params)
-        format.html { redirect_to @alkohol, notice: 'Alkohol was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Alkohol was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,9 +63,10 @@ class AlkoholsController < ApplicationController
   # DELETE /alkohols/1
   # DELETE /alkohols/1.json
   def destroy
+    @alkohol.event.remove_alcohol @alkohol
     @alkohol.destroy
     respond_to do |format|
-      format.html { redirect_to alkohols_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
@@ -71,6 +79,10 @@ class AlkoholsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alkohol_params
-      params.require(:alkohol).permit(:name, :image_uid, :image_name, :percentage, :volume, :bottle_type, :image)
+      params.require(:alkohol).permit(:name, :drink_type, :count, :percentage, :volume, :bottle_type, :image)
+    end
+
+    def set_event
+      @event = Event.find(params[:event_id])
     end
 end
