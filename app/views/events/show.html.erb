@@ -2,14 +2,7 @@
     <%= render 'show_controls' %>
 <% end %>
 
-<% content_for :page_title do %>
-    <h3><%= @event.name %></h3>
-    <hr>
-<% end %>
-
 <div id="details"></div>
-
-<p id="notice"><%= notice %></p>
 
 <div class="panel panel-default">
   <table class="table table-bordered">
@@ -17,13 +10,10 @@
       <td style="width: 50%">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <p><%= @event.date %></p>
-            <p><%= @event.end_date %></p>
-            <p><%= @event.users.count %></p>
-            <p><%= @event.coolness %>%<p>
+            <%= render 'event_details' %>
           </div>
-          <div class="panel-body">
-            <p><%= raw @event.description %></p>
+          <div id="description" class="panel-body" style="overflow-y: scroll; word-wrap: break-word; height: 85px; width: 400px">
+            <%= raw @event.description %>
           </div>
         </div>
       </td>
@@ -40,6 +30,9 @@
         <%= link_to tag.body, search_by_tag_path(tag) %>
     <% end %>
 </div>
+
+<h6>Participants</h6>
+<%= render 'event_participants_block' %>
 
 <%= render 'alcohol_bar' %>
 
@@ -68,3 +61,7 @@
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
+
+<script>
+    $('#description').niceScroll();
+</script>

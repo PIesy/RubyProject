@@ -51,7 +51,7 @@ class AlkoholsController < ApplicationController
     @alkohol.image = Pathname.new("app/assets/images/#{params[:alkohol => :bottle_type]}.jpg")
     respond_to do |format|
       if @alkohol.update(alkohol_params)
-        format.html { redirect_to :back, notice: 'Alkohol was successfully updated.' }
+        format.html { redirect_to @alkohol.event, notice: 'Alkohol was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

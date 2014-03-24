@@ -3,7 +3,7 @@
     <li class="list-group-item playlist" data-url="<%= track.soundcloud_url %>">
       <%= track.name %>
       <% if @event.user_participates? current_user %>
-        <span class="glyphicon glyphicon-remove" id="<%= track.id %>" style="float: right; cursor: pointer"></span>
+        <span class="glyphicon glyphicon-remove track" id="<%= track.id %>" style="float: right; cursor: pointer"></span>
       <% end %>
     </li>
   <% end %>

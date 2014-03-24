@@ -1,13 +1,12 @@
 Project::Application.routes.draw do
-  resources :alkohols
-
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
-  get "home/index"
+  resources :alkohols
   resources :comments
   resources :tracks
   resources :events
   get '/events/:id/join' => 'events#join'
   get '/events/:id/leave' => 'events#leave'
+  get '/events/:id/remove_participant' => 'events#remove_participant'
   get '/events/search/:id' => 'search#select_by_tag'
   get '/search' => 'search#search'
   get '/search/tags_autocomplete' => 'search#tags_autocomplete'
@@ -17,7 +16,7 @@ Project::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'events#index'
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

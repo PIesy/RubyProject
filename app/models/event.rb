@@ -9,9 +9,17 @@ class Event < ActiveRecord::Base
   has_many :alkohols, dependent: :destroy
   geocoded_by :location
   after_validation :geocode
-  acts_as_mappable :default_units => :kms, :lat_column_name => :latitude, :lng_column_name => :longitude
+  before_validation :set_location
+  validates :name, presence: true
 
   def self.search(query)
     where(['name LIKE ?', "%#{query}%"])
   end
+
+  private
+
+  def set_location
+    self.location = 'minsk belarus' if location.empty?
+  end
+
 end

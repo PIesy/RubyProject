@@ -1,0 +1,10 @@
+<div class="well">
+  <% @event.users.each do |user| %>
+    <span class="tag label label-info">
+      <%= user.name %>
+      <% if @event.user_is_owner? current_user %>
+        <span data-event="<%= @event.id %>" id="<%= user.id %>" class="glyphicon glyphicon-remove user" style="cursor: pointer"></span>
+      <% end %>
+    </span>
+  <% end %>
+</div>

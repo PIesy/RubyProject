@@ -49,6 +49,6 @@ module EventServices
     self.alkohols.each do |u|
       volume += (u.volume * u.count)
     end
-    return volume
+    volume == 0 ? 1 : volume
   end
 end

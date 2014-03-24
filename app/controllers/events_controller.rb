@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include EventsHelper
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :join, :leave]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :join, :leave, :remove_participant]
   before_action :get_tags, only: [:create, :update]
 
   # GET /events
@@ -81,6 +81,16 @@ class EventsController < ApplicationController
   def leave
     @event.remove_user current_user
     redirect_to :action => 'index'
+  end
+
+  def remove_participant
+    if @event.user_is_owner? current_user
+      user = User.find(params[:custom_user])
+      @event.remove_user user if @event.user != user
+    end
+    respond_to do |format|
+      format.json {head :no_content}
+    end
   end
 
   private

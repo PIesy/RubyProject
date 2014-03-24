@@ -1,0 +1,24 @@
+<h2><%= @event.name %></h2>
+<h4>By <%= @event.user.name %></h4>
+<table class="table table-bordered">
+  <tr>
+    <td>Start date</td>
+    <td><%= @event.date.to_date.to_s + ' ' + @event.date.strftime('%I:%M%p').to_s %></td>
+  </tr>
+  <tr>
+    <td>End date</td>
+    <td><%= @event.end_date.to_date.to_s + ' ' + @event.end_date.strftime('%I:%M%p').to_s %></td>
+  </tr>
+  <tr>
+    <td>Participants count</td>
+    <td><%= @event.users.count %></td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td><%= @event.location %></td>
+  </tr>
+  <tr>
+    <td>Coolness</td>
+    <td><%= @event.coolness %></td>
+  </tr>
+</table>

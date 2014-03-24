@@ -31,8 +31,6 @@ gem 'underscore-rails'
 
 gem 'geocoder'
 
-gem 'geokit-rails'
-
 gem 'dragonfly'
 
 # Use SCSS for stylesheets
