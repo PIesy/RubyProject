@@ -48,7 +48,7 @@ class AlkoholsController < ApplicationController
   # PATCH/PUT /alkohols/1
   # PATCH/PUT /alkohols/1.json
   def update
-    @alkohol.image = Pathname.new("app/assets/images/#{params[:alkohol => :bottle_type]}.jpg")
+    @alkohol.image = Pathname.new("app/assets/images/#{params[:alkohol][:bottle_type]}.jpg")
     respond_to do |format|
       if @alkohol.update(alkohol_params)
         format.html { redirect_to @alkohol.event, notice: 'Alkohol was successfully updated.' }

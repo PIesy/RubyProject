@@ -21,5 +21,4 @@ class Event < ActiveRecord::Base
   def set_location
     self.location = 'minsk belarus' if location.empty?
   end
-
 end

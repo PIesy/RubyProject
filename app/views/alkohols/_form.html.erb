@@ -40,7 +40,7 @@
           <div class="actions">
             <%= f.submit %>
           </div>
-          <input type="hidden" name="event_id" value="<%= @event.id%>">
+          <input type="hidden" name="event_id" value="<%= @event.id if @event.present?%>">
         <% end %>
     </div>
 

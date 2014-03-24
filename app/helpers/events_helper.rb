@@ -1,10 +1,10 @@
 module EventsHelper
   def join_event_path(event)
-    "events/#{event.id}/join"
+    "/events/#{event.id}/join"
   end
 
   def leave_event_path(event)
-    "events/#{event.id}/leave"
+    "/events/#{event.id}/leave"
   end
 
   def search_by_tag_path(tag)
@@ -33,8 +33,13 @@ module EventsHelper
   end
 
   def get_coolness_color(event)
-    coolness = event.coolness.to_i
-    i = (255 * coolness)
-    return "##{i.to_s(16).last(2)}0000"
+    coolness = event.coolness.to_f
+    r = (200 + 55 * (coolness)).to_i
+    g = (200 * (1 - coolness)).to_i
+    b = (200 * (1 - coolness)).to_i
+    r = ('0' + r.to_s(16)).last(2)
+    g = ('0' + g.to_s(16)).last(2)
+    b = ('0' + b.to_s(16)).last(2)
+    event.expired? ? '#f0ffff' : "##{r + g + b}"
   end
 end

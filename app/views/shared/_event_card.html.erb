@@ -1,0 +1,17 @@
+<div class="panel panel-default" style="opacity: <%= event.expired? ? '0.5' : '1'%>">
+  <div class="panel-heading" style="background-color: <%= get_coolness_color(event) %>;">
+    <span style="opacity: 1;"><%= event.name %></span>
+  </div>
+  <div class="panel-body">
+    <ul>
+       <li>Participants count <%= event.users.count %></li>
+       <li>Coolness <%= event.coolness %></li>
+       <li>Starts <%= event.date.to_date %></li>
+       <li>Ends <%= event.date.to_date %></li>
+    </ul>
+  </div>
+  <div class="panel-footer">
+    <%= link_to 'Show', event_path(event.id), class: "btn btn-default" %>
+    <%= render 'events/event_controls', event: event %>
+  </div>
+</div>

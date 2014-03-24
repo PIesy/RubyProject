@@ -59,7 +59,14 @@
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <form action="/search" style="padding-bottom: 5px">
+              <div class="input-group">
                 <input type="search" name="search" placeholder="enter search string" class="form-control">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+              </div>
+              <span>Coolness (0 to 1)</span>
+              <input type="range" min="0" max="100" name="alcohol" value="0">
             </form>
             <%= yield :page_controls %>
           </div><!--/.well -->

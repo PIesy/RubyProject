@@ -4,6 +4,10 @@
 
 url = "/search/tags_autocomplete/"
 $("#tags-input").tagsinput confirmKeys: [13, 32, 44]
-$("#tags-input").tagsinput("input").typeahead(remote: url + "?search=%QUERY").bind "typeahead:selected", $.proxy((obj, datum) ->
+$("#tags-input").tagsinput("input").typeahead( name: "tags",
+prefetch: { url: url, ttl: 120}
+#,remote: url + "?search=%QUERY"
+)
+.bind "typeahead:selected", $.proxy((obj, datum) ->
   @tagsinput "add", datum.value
 , $("#tags-input"))

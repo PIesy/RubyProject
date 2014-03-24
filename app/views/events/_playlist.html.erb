@@ -1,8 +1,10 @@
-<ul class="list-group">
+<h4>Playlist</h4>
+<ul id="playlist-container" class="list-group" style="max-height: 150px; overflow-y: scroll">
   <% @event.tracks.each do |track| %>
     <li class="list-group-item playlist" data-url="<%= track.soundcloud_url %>">
       <%= track.name %>
-      <% if @event.user_participates? current_user %>
+      <span class="glyphicon glyphicon-play" style="cursor: pointer;"></span>
+      <% if @event.modifiable? current_user %>
         <span class="glyphicon glyphicon-remove track" id="<%= track.id %>" style="float: right; cursor: pointer"></span>
       <% end %>
     </li>
@@ -10,3 +12,7 @@
 </ul>
 
 <%= javascript_include_tag 'events' %>
+
+<script>
+  $("#playlist-container").niceScroll();
+</script>

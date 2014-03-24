@@ -6,14 +6,16 @@ class SearchController < ApplicationController
   end
 
   def search
-    @events = Event.search(params[:search]).to_set
-    @events.merge get_by_tag [params[:search]]
+    @events = Event.search(params[:search]).where("coolness >= ?", (params[:alcohol].to_f / 100)).to_set
+    @events.merge get_by_tag(params[:search], params[:alcohol])
+    @events.merge get_by_alcohol(params[:search], params[:alcohol])
+    @events = filter_expired(@events)
     render 'events/index'
   end
 
   def tags_autocomplete
     array = []
-    @tags = Tag.search(params[:search])
+    @tags = Tag.search(params[:search]).take(100)
     @tags.each do |t|
       array << t.body
     end

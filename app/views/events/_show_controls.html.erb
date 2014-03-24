@@ -1,7 +1,9 @@
 <%= render 'event_controls', event: @event %>
 <hr>
-<%= link_to 'buhlo', (new_alkohol_path + '/?id=' + @event.id.to_s), class: 'btn btn-danger' %>
-<%= content_tag :a, 'Add track', :href => '#add-track', :class => 'btn btn-default', :data => {:toggle => 'modal'} %>
+<% if @event.modifiable?(current_user) %>
+    <%= link_to 'Add alcohol', (new_alkohol_path + '/?event_id=' + @event.id.to_s), class: 'btn btn-danger', style: 'width: 100%' %><br>
+    <%= content_tag :a, 'Add track', :href => '#add-track', :class => 'btn btn-default', :style => 'width: 100%' ,:data => {:toggle => 'modal'} %>
+<% end %>
 <%= render 'playlist' %>
 <div id="player"></div>
 
